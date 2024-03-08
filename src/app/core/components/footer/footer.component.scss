@@ -1,0 +1,19 @@
+.footer-flex{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    // align-items: center;
+    height: 100%;
+    
+}
+.footer-main{
+    margin: 20px auto 0;
+    width: 90%;
+    padding: 0 4%;
+    gap: 1rem;
+}
+.box-code{
+    border: 1px solid #808080;
+    cursor: pointer;
+    width: 6rem;
+}

@@ -1,0 +1,22 @@
+<div class="min-h-screen">
+    <div class="p-2 font-bold">
+        <h2 class="text-xl">Resultados de "{{input}}"</h2>
+    </div>
+    <div class="swiper-wrapper ">
+        <div  *ngFor="let movie of listMovies" >
+            <div (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()" class="swiper-slide relative">
+                <img [src]="movie.poster_path | image" alt="">
+                <div @fade *ngIf="(movie.title===selectionMovies)||(movie.name===selectionMovies)" class="desc p-2">
+                    <span class="text-xs flex flex-wrap font-bold">{{movie.original_title}}</span>
+                    <p class="text-[0.6rem] my-3">{{movie.overview | description:70}}</p>
+                    <div class="py-3 absolute w-[90%] bottom-1">
+                        <p class="text-xs flex justify-between items-center">
+                            <span class="text-green-500">Vote Average : {{movie.vote_average}}</span>
+                            <i class="fa fa-2x fa-chevron-circle-down" aria-hidden="true"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

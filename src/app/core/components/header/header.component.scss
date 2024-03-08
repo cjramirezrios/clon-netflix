@@ -1,0 +1,34 @@
+.bg-main{
+    height: 4.25rem;
+    z-index: 10;
+}
+
+.dark-nav{
+    background: #141414;
+}
+
+.lupa{
+    transition: all 300ms ease-in-out;
+}
+.lupa:hover{
+    transform: scale(1.1,1.1);
+}
+
+.search{
+    border:1px solid white;
+    padding-left: .5rem;
+}
+.hiddenDiv{
+    display: none;
+}
+.navbar-options-mobile{
+    display: none;
+}
+@media(max-width:1130px){
+    .navbar-options{
+        display:none;
+    }
+    .navbar-options-mobile{
+        display: block;
+    }
+}
