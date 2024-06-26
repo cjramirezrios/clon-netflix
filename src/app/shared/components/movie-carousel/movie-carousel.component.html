@@ -3,7 +3,7 @@
     <div #swiperContainer class="swiper-container">
         <div class="swiper-wrapper">
             <ng-container *ngFor="let movie of videoContents">
-                <div (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()" class="swiper-slide relative">
+                <div *ngIf="!estado;else newcard" (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()" class="swiper-slide relative">
                     <img [src]="movie.poster_path | image" alt="">
                     <div @fade *ngIf="(movie.title===selectionMovies)||(movie.name===selectionMovies)" class="desc p-2">
                         <span class="text-base flex flex-wrap font-bold">{{movie.original_title}}</span>
@@ -16,6 +16,21 @@
                         </div>
                     </div>
                 </div>
+                <ng-template #newcard>
+                    <div (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()" class="swiper-slide relative">
+                        <img [src]="movie.poster_path | image" alt="">
+                        <div @fades *ngIf="(movie.title===selectionMovies)||(movie.name===selectionMovies)" class="desc p-2">
+                            <span class="titleMovie text-base flex flex-wrap font-bold">{{movie.original_title}}</span>
+                            <p class=" descriptionMovie text-xs my-3">{{movie.overview | description:100}}</p>
+                            <div class="py-3 absolute w-[90%] bottom-1">
+                                <p class=" flex justify-between items-center">
+                                    <span class="descriptionMovie text-green-500">Vote Average : {{movie.vote_average}}</span>
+                                    <i class="fa fa-2x fa-chevron-circle-down" aria-hidden="true"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </ng-container>
         </div>
     </div>

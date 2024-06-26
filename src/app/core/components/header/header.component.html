@@ -1,34 +1,41 @@
-<header class="h-[4.25rem] z-10 bg-gray-900 sticky top-0 flex items-center justify-between px-10">
+<header class="z-10 bg-gray-900 sticky top-0  px-10">
     <!--Logo-->
-    <div class="flex gap-5">
-        <img width="110" src="../../../../assets/images/pngwing.com.png" alt="netflix-logo">
-        <div  class="navbar-options flex items-center gap-5">
-            <ul  *ngFor="let item of listNav">
-                <li class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition-[1s]">{{item}}</li>
+    <div class="flex items-center justify-between">
+
+        <div class="flex gap-5">
+            <img width="110" src="../../../../assets/images/pngwing.com.png" alt="netflix-logo">
+            <div  class="navbar-options flex items-center gap-5">
+                <ul  *ngFor="let item of listNav">
+                    <li class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition-[1s]">{{item}}</li>
+                </ul>
+            </div>
+            <ul class="navbar-options-mobile self-center text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition-[1s]">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Browser</a>
+                    <ul class="dropdown-menu">
+                      <li *ngFor="let item of listNav"><a class="dropdown-item" href="#">{{item}}</a></li>
+                    </ul>
+                  </li>
             </ul>
         </div>
-        <ul class="navbar-options-mobile self-center text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition-[1s]">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Browser</a>
-                <ul class="dropdown-menu">
-                  <li *ngFor="let item of listNav"><a class="dropdown-item" href="#">{{item}}</a></li>
-                </ul>
-              </li>
-        </ul>
-    </div>
-    <div class="text-white flex items-center gap-4">
-        <div clickOutside (clickOutside)="clickedOutside()">
-            <div class="lupa" [class.hiddenDiv]="search">
-                <i class="bi bi-search text-lg cursor-pointer " (click)="changueSearch()"></i>
-            </div>
-                <div *ngIf="search" class="search p-1 flex gap-3 " >
-                    <i class="bi bi-search text-lg cursor-pointer "></i>
-                    <input [(ngModel)]="valorInput" (keyup)="sendValueInput(valorInput)" type="text" class="border-transparent bg-transparent outline-none" autofocus #input placeholder="Title,people,geners">
+        <div class="option-rigth text-white flex items-center">
+            <div *ngIf="!estado" clickOutside (clickOutside)="clickedOutside()">
+                <div class="lupa" [class.hiddenDiv]="search">
+                    <i class="bi bi-search text-lg cursor-pointer " (click)="changueSearch()"></i>
                 </div>
+                    <div *ngIf="search" class="search p-1 flex gap-3 " >
+                        <i class="bi bi-search text-lg cursor-pointer "></i>
+                        <input [(ngModel)]="valorInput" (keyup)="sendValueInput(valorInput)" type="text" class="border-transparent bg-transparent outline-none" autofocus #input placeholder="Title,people,geners">
+                    </div>
+            </div>
+            <a href=""><span>Welcome<strong> Cjotas</strong></span></a>
+            <img />
+            &nbsp; | &nbsp;
+            <a href="">Signout</a>
         </div>
-        <a href=""><span>Welcome<strong> Cjotas</strong></span></a>
-        <img />
-        &nbsp; | &nbsp;
-        <a href="">Signout</a>
     </div>
+        <div *ngIf="estado" class="search p-1 flex gap-3 my-3" >
+            <i class="bi bi-search text-lg cursor-pointer "></i>
+            <input [(ngModel)]="valorInput" (keyup)="sendValueInput(valorInput)" type="text" class="border-transparent bg-transparent outline-none" autofocus #input placeholder="Title,people,geners">
+        </div>
 </header>

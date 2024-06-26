@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import Swiper from 'swiper';
 import { IVideoContent } from '../../models/video-content.interface';
 import { DescriptionPipe } from '../../pipes/description.pipe';
@@ -18,19 +18,28 @@ import { animate, style, transition, trigger } from '@angular/animations';
         style({opacity:0}),
         animate(300,style({opacity:1}))
       ])
+    ]),
+    trigger('fades',[
+      transition('void => *',[
+        style({opacity:0}),
+        animate(100,style({opacity:1}))
+      ])
     ])
   ]
 })
-export class MovieCarouselComponent implements AfterViewInit{
+export class MovieCarouselComponent implements AfterViewInit,OnInit{
   @Input() videoContents: IVideoContent[]=[]
   @Input() title:string='';
   @ViewChild('swiperContainer') swiperContainer!:ElementRef;
-
+  estado:boolean=false;
   selectionMovies:string | null=null;
   ngAfterViewInit(): void {
     this.initSwiper();
   }
 
+  ngOnInit(): void {
+    this.verificarTamanoPantalla();
+  }
   private initSwiper(){
     return new Swiper(this.swiperContainer.nativeElement,{
       slidesPerView:3,
@@ -79,5 +88,16 @@ export class MovieCarouselComponent implements AfterViewInit{
   clearHoverMovie(){
     this.selectionMovies=null
   }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.verificarTamanoPantalla();
+  }
+
+  verificarTamanoPantalla(): void {
+    this.estado = window.innerWidth < 800;
+  }
+
 
 }

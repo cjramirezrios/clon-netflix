@@ -1,13 +1,16 @@
 <iframe class="w-full h-full absolute border-none" [src]="videoUrl" [frameBorder]="0" allowfullscreen></iframe>
 <div class="h-screen bg-white">
     <div class="pt-[10%] px-24 absolute h-full text-white bg-gradient-to-r from-black">
-        <h1 class="text-6xl font-bold">{{bannerTitle}}</h1>
-        <p class="inline-block py-6 text-base w-1/4 flex-wrap">{{bannerOverview}}</p>
-        <div>
+        <h1 class="title text-6xl font-bold">{{bannerTitle}}</h1>
+        <p *ngIf="!estado;else parrafo" class="description inline-block py-6 text-base w-1/4 flex-wrap">{{bannerOverview}}</p>
+        <ng-template #parrafo>
+            <p  class="description inline-block py-6 text-base w-1/2 flex-wrap">{{bannerOverview | description:150}}...</p>
+        </ng-template>
+        <div class="buttons-options flex gap-1">
             <button class="bg-white text-black  py-2 px-8 text-xl rounded-lg hover:bg-opacity-70 transition-[1s]">
                 <i class="bi bi-play-fill "></i> Play
             </button>
-            <button class="mx-2 bf-grap-500 bg-[#4F4E50] text-white px-8 py-2 text-xl bg-opacity-50 rounded-lg">
+            <button class=" bf-grap-500 bg-[#4F4E50] text-white px-8 py-2 text-xl bg-opacity-50 rounded-lg">
                 <i class="bi bi-exclamation-circle"></i>  More Info
             </button>
         </div>

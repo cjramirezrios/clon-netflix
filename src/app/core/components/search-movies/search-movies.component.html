@@ -1,8 +1,8 @@
 <div class="min-h-screen">
-    <div class="p-2 font-bold">
+    <div class="p-2 font-bold" *ngIf="listMovies.length>0">
         <h2 class="text-xl">Resultados de "{{input}}"</h2>
     </div>
-    <div class="swiper-wrapper ">
+    <div class="swiper-wrapper " *ngIf="listMovies.length>0">
         <div  *ngFor="let movie of listMovies" >
             <div (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()" class="swiper-slide relative">
                 <img [src]="movie.poster_path | image" alt="">
@@ -17,6 +17,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div *ngIf="listMovies.length==0" class="flex justify-center items-center">
+        <div class="flex gap-4 items-center justify-center text-4xl p-11 pt-16 text-neutral-200 font-medium">
+            <p>No se encontraron coincidiencias con {{input}}</p>
+            <img  src="../../../../assets/images/undraw_not_found_re_bh2e.svg" alt="">
         </div>
     </div>
 </div>

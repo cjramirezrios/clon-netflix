@@ -2,7 +2,9 @@
     height: 4.25rem;
     z-index: 10;
 }
-
+header{
+    height: 4.25rem;
+}
 .dark-nav{
     background: #141414;
 }
@@ -24,11 +26,30 @@
 .navbar-options-mobile{
     display: none;
 }
+.option-rigth{
+    gap: 1rem;
+}
 @media(max-width:1130px){
     .navbar-options{
         display:none;
     }
     .navbar-options-mobile{
         display: block;
+    }
+    .option-rigth{
+        gap: .5rem;
+    }
+}
+@media(max-width:800px){
+    .search{
+        width: 100%;
+    }
+    .option-rigth{
+        gap: .2rem;
+    }
+    header{
+        height: 8rem;
+        display: flex;
+        flex-direction: column;
     }
 }
